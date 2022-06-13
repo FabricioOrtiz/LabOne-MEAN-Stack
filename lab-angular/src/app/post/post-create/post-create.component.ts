@@ -15,4 +15,5 @@ export class PostCreateComponent implements OnInit {
   onAddPost(){
     this.newPost =  "test";
   }
+
 }
