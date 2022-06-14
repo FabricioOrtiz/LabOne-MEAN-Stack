@@ -10,7 +10,7 @@ app.use('/api/posts',(req, res, next) => {
             content: 'content'
         }
     ];
-    res.status(200).json({
+    return res.status(200).json({
         message: 'posts fetche succesfully',
         post: posts
     });
