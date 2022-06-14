@@ -1,10 +1,16 @@
 import { Post } from './post.model';
+import { Subject } from 'rxjs';
 
 export class PostsService{
     private posts: Post[] = [];
+    private postUpdated = new Subject<Post[]>();
 
     getPosts(){
-        return this.posts;
+        return [...this.posts];
+    }
+
+    getPostUpdateListener(){
+        return this.postUpdated.asObservable();
     }
 
     addPost(title: string, content: string){
@@ -15,5 +21,6 @@ export class PostsService{
         this.posts.push(
             post
         );
+        this.postUpdated.next([...this.posts]);
     }
 }
