@@ -37,22 +37,14 @@ app.post("/api/posts", (req, res, next) => {
 });
 
 app.use('/api/posts',(req, res, next) => {
-    const posts = [
-        {
-            id: '1851454',
-            title: 'first post',
-            content: 'content'
-        },
-        {
-            id: '1851454',
-            title: 'second post',
-            content: 'content'
-        }
-    ];
-    res.status(200).json({
-        message: 'posts fetche succesfully',
-        posts: posts
-    });
+    Post.find()
+        .then((documents) =>{
+            res.status(200).json({
+                message: 'posts fetche succesfully',
+                posts: documents
+            });
+        })
+        .catch();
 });
 
 module.exports = app;
