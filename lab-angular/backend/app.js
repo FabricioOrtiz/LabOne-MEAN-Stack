@@ -1,12 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
 
 const app = express();
 
+mongoose.connect("mongodb+srv://titoortizcr:dgFLMmvk9N7oosrV@cluster0.bxom9eu.mongodb.net/?retryWrites=true&w=majority")
+    .then(() => {
+        console.log('Connect to database!');
+    }).catch(() => {
+        console.log('Connection fail!');
+    });
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
-
-//dgFLMmvk9N7oosrV
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
